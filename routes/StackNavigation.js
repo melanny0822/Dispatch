@@ -1,19 +1,29 @@
-import React from 'react'
-import 'react-native-gesture-handler'
+import React from 'react';
+import 'react-native-gesture-handler';
 
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Stack = createStackNavigator()
+// Import Screens
+import InitialScreen from '../screens/initialScreen'
+
+const Stack = createStackNavigator();
 
 const StackNavigation = () => {
   return (
     <NavigationContainer>
-        <StackNavigation>
-            
-        </StackNavigation>
+      <Stack.Navigator initialRouteName="InitialScreen"> 
+        <Stack.Screen
+          name="InitialScreen"
+          component={InitialScreen}
+          options={{
+            headerShown: false
+          }}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 }
 
-export default StackNavigation
+export default StackNavigation;
+
