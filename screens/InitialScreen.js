@@ -1,5 +1,5 @@
 import React from 'react'
-import { SafeAreaView, Text, Touchable, TouchableOpacity, View } from 'react-native'
+import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
 
 const InitialScreen = ({navigation}) => {
 
