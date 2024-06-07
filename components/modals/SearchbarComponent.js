@@ -1,5 +1,13 @@
 import React, { useState } from 'react'
-import { Modal, SafeAreaView, StyleSheet, TouchableOpacity, View, TextInput } from 'react-native'
+import { 
+    Modal, 
+    SafeAreaView, 
+    StyleSheet, 
+    TouchableOpacity,
+    View, 
+    TextInput, 
+    TouchableWithoutFeedback 
+} from 'react-native'
 
 //Icons Imports
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
@@ -20,25 +28,31 @@ const SearchbarComponent = () => {
         </View>
         <Modal
             animationType='fade'
-            onDismiss={console.log("Cerrar Modal")}
-            onShow={console.log("show")}
+            onDismiss={console.log("Close Modal")}
+            onShow={console.log("Show Modal")}
             transparent
             visible={visible}
         >
-            <View style={style.container}>
-                <TouchableOpacity
-                    onPress={() => setVisible(false)}
-                >
-                    <AntDesign name='closecircle' style={{fontSize: 25, color: '#68ECA3', marginRight: 20}}/>
-                </TouchableOpacity>
-                <View style={style.inputContainer}>
-                    <FontAwesome6 name='magnifying-glass' style={style.magnifyingIconSearchbar}/>
-                    <TextInput
-                        placeholder='Search...'
-                        style={{color: '#000000', fontSize: 18, paddingHorizontal: 20}}
-                    />
+            <TouchableWithoutFeedback 
+                onPress={() => setVisible(false)}
+            >
+                <View style={{flex: 1}}>
+                    <View style={style.container}>
+                        <TouchableOpacity
+                            onPress={() => setVisible(false)}
+                        >
+                            <AntDesign name='closecircle' style={{fontSize: 25, color: '#68ECA3', marginRight: 20}}/>
+                        </TouchableOpacity>
+                        <View style={style.inputContainer}>
+                            <FontAwesome6 name='magnifying-glass' style={style.magnifyingIconSearchbar}/>
+                            <TextInput
+                                placeholder='Search...'
+                                style={{color: '#000000', fontSize: 18, paddingHorizontal: 20, flex: 1}}
+                            />
+                        </View>
+                    </View>
                 </View>
-            </View>
+            </TouchableWithoutFeedback>
         </Modal>
       </SafeAreaView>
     )

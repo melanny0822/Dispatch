@@ -1,8 +1,12 @@
 import React from 'react'
-import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
-
-//Icons Imports
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { 
+  Image,
+  SafeAreaView, 
+  ScrollView, 
+  StyleSheet, 
+  Text, 
+  View 
+} from 'react-native'
 
 //Images Imports
 import PhotoPerfil1 from '../assets/Persona1.jpg'
@@ -10,6 +14,7 @@ import PhotoPerfil2 from '../assets/Persona2.jpg'
 
 //Components Imports
 import SearchbarComponent from '../components/modals/SearchbarComponent'
+import ChatComponent from '../components/modals/ChatComponent'
 
 const HomeScreen = () => {
   return (
@@ -22,186 +27,10 @@ const HomeScreen = () => {
             <Image source={PhotoPerfil1} style={style.PhotoPerfil}/>
           </View>
         </View>
+        
         <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.nameAndDate}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>10:54 a.m</Text>
-            </View>
-            <View style={style.message}>
-              <Ionicons name='checkmark-done' style={{fontSize: 16, marginRight: 5}}/>
-              <Text style={{fontSize: 14}}>Hello guy, I have a new idea for the project and I...</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.nameAndDate}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>10:54 a.m</Text>
-            </View>
-            <View style={style.message}>
-              <Ionicons name='checkmark-done' style={{fontSize: 16, marginRight: 5}}/>
-              <Text style={{fontSize: 14}}>Hello guy, I have a new idea for the project and I...</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.nameAndDate}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>10:54 a.m</Text>
-            </View>
-            <View style={style.message}>
-              <Ionicons name='checkmark-done' style={{fontSize: 16, marginRight: 5}}/>
-              <Text style={{fontSize: 14}}>Hello guy, I have a new idea for the project and I...</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.nameAndDate}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>10:54 a.m</Text>
-            </View>
-            <View style={style.message}>
-              <Ionicons name='checkmark-done' style={{fontSize: 16, marginRight: 5}}/>
-              <Text style={{fontSize: 14}}>Hello guy, I have a new idea for the project and I...</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.nameAndDate}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>10:54 a.m</Text>
-            </View>
-            <View style={style.message}>
-              <Ionicons name='checkmark-done' style={{fontSize: 16, marginRight: 5}}/>
-              <Text style={{fontSize: 14}}>Hello guy, I have a new idea for the project and I...</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.nameAndDate}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>10:54 a.m</Text>
-            </View>
-            <View style={style.message}>
-              <Ionicons name='checkmark-done' style={{fontSize: 16, marginRight: 5}}/>
-              <Text style={{fontSize: 14}}>Hello guy, I have a new idea for the project and I...</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.nameAndDate}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>10:54 a.m</Text>
-            </View>
-            <View style={style.message}>
-              <Ionicons name='checkmark-done' style={{fontSize: 16, marginRight: 5}}/>
-              <Text style={{fontSize: 14}}>Hello guy, I have a new idea for the project and I...</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.nameAndDate}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>10:54 a.m</Text>
-            </View>
-            <View style={style.message}>
-              <Ionicons name='checkmark-done' style={{fontSize: 16, marginRight: 5}}/>
-              <Text style={{fontSize: 14}}>Hello guy, I have a new idea for the project and I...</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.nameAndDate}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>10:54 a.m</Text>
-            </View>
-            <View style={style.message}>
-              <Ionicons name='checkmark-done' style={{fontSize: 16, marginRight: 5}}/>
-              <Text style={{fontSize: 14}}>Hello guy, I have a new idea for the project and I...</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.nameAndDate}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>10:54 a.m</Text>
-            </View>
-            <View style={style.message}>
-              <Ionicons name='checkmark-done' style={{fontSize: 16, marginRight: 5}}/>
-              <Text style={{fontSize: 14}}>Hello guy, I have a new idea for the project and I...</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.nameAndDate}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>10:54 a.m</Text>
-            </View>
-            <View style={style.message}>
-              <Ionicons name='checkmark-done' style={{fontSize: 16, marginRight: 5}}/>
-              <Text style={{fontSize: 14}}>Hello guy, I have a new idea for the project and I...</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.nameAndDate}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>10:54 a.m</Text>
-            </View>
-            <View style={style.message}>
-              <Ionicons name='checkmark-done' style={{fontSize: 16, marginRight: 5}}/>
-              <Text style={{fontSize: 14}}>Hello guy, I have a new idea for the project and I...</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.nameAndDate}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-              <Text style={{fontWeight: 'bold', fontSize: 16}}>10:54 a.m</Text>
-            </View>
-            <View style={style.message}>
-              <Ionicons name='checkmark-done' style={{fontSize: 16, marginRight: 5}}/>
-              <Text style={{fontSize: 14}}>Hello guy, I have a new idea for the project and I...</Text>
-            </View>
-          </View>
+          <Image source={PhotoPerfil2} style={style.PhotoPerfil}/>
+          <ChatComponent/>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -209,6 +38,7 @@ const HomeScreen = () => {
 }
 
 const style = StyleSheet.create({
+  
   container: {
     flex: 1
   },
@@ -241,11 +71,13 @@ const style = StyleSheet.create({
 
   containerUserChat: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: 15
+    marginVertical: 15,
+    alignItems: 'center',
+    marginHorizontal: 15
   },
 
   containerMesagge: {
+    flex: 1,
     justifyContent: 'center',
     marginLeft: 10
   },

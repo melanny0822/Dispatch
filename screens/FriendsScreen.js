@@ -1,8 +1,12 @@
 import React from 'react'
-import { SafeAreaView, TouchableOpacity, ScrollView, StyleSheet, Text, Image, View } from 'react-native'
-
-//Icons Imports
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { 
+  SafeAreaView, 
+  ScrollView, 
+  StyleSheet, 
+  Text, 
+  Image, 
+  View 
+} from 'react-native'
 
 //Images Imports
 import PhotoPerfil1 from '../assets/Persona1.jpg'
@@ -11,35 +15,22 @@ import PhotoPerfil2 from '../assets/Persona2.jpg'
 //Components Imports
 import SearchbarComponent from '../components/modals/SearchbarComponent'
 import AddFriendComponent from '../components/modals/AddFriendComponent'
+import OptionsFriendsComponent from '../components/modals/OptionsFriendsComponent'
 
 const FriendsScreen = () => {
 
   return (
     <SafeAreaView style={style.container}>
       <ScrollView>
-      <View style={style.containerNavbar}>
-        <Text style={style.username}>Harold Sander</Text>
-        <View style={style.containerIcons}>
-          <AddFriendComponent/>
-          <SearchbarComponent/>
-          <Image source={PhotoPerfil1} style={style.PhotoPerfil}/>
-        </View>
-      </View>
-
-      <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.name}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-            </View>
-            <View style={style.message}>
-              <Text style={{fontSize: 14, marginRight: 6}}>Hello I am Jeffry Kayle and I’m new in Dispatch</Text>
-              <TouchableOpacity>
-                <Ionicons name='ellipsis-vertical' style={{fontSize: 20, marginRight: 5}}/>
-              </TouchableOpacity>
-            </View>
+        <View style={style.containerNavbar}>
+          <Text style={style.username}>Harold Sander</Text>
+          <View style={style.containerIcons}>
+            <AddFriendComponent/>
+            <SearchbarComponent/>
+            <Image source={PhotoPerfil1} style={style.PhotoPerfil}/>
           </View>
         </View>
+    
         <View style={style.containerUserChat}>
           <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
           <View style={style.containerMesagge}>
@@ -47,122 +38,8 @@ const FriendsScreen = () => {
               <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
             </View>
             <View style={style.message}>
-              <Text style={{fontSize: 14, marginRight: 6}}>Hello I am Jeffry Kayle and I’m new in Dispatch</Text>
-              <TouchableOpacity>
-                <Ionicons name='ellipsis-vertical' style={{fontSize: 20, marginRight: 5}}/>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.name}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-            </View>
-            <View style={style.message}>
-              <Text style={{fontSize: 14, marginRight: 6}}>Hello I am Jeffry Kayle and I’m new in Dispatch</Text>
-              <TouchableOpacity>
-                <Ionicons name='ellipsis-vertical' style={{fontSize: 20, marginRight: 5}}/>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.name}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-            </View>
-            <View style={style.message}>
-              <Text style={{fontSize: 14, marginRight: 6}}>Hello I am Jeffry Kayle and I’m new in Dispatch</Text>
-              <TouchableOpacity>
-                <Ionicons name='ellipsis-vertical' style={{fontSize: 20, marginRight: 5}}/>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.name}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-            </View>
-            <View style={style.message}>
-              <Text style={{fontSize: 14, marginRight: 6}}>Hello I am Jeffry Kayle and I’m new in Dispatch</Text>
-              <TouchableOpacity>
-                <Ionicons name='ellipsis-vertical' style={{fontSize: 20, marginRight: 5}}/>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.name}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-            </View>
-            <View style={style.message}>
-              <Text style={{fontSize: 14, marginRight: 6}}>Hello I am Jeffry Kayle and I’m new in Dispatch</Text>
-              <TouchableOpacity>
-                <Ionicons name='ellipsis-vertical' style={{fontSize: 20, marginRight: 5}}/>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.name}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-            </View>
-            <View style={style.message}>
-              <Text style={{fontSize: 14, marginRight: 6}}>Hello I am Jeffry Kayle and I’m new in Dispatch</Text>
-              <TouchableOpacity>
-                <Ionicons name='ellipsis-vertical' style={{fontSize: 20, marginRight: 5}}/>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.name}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-            </View>
-            <View style={style.message}>
-              <Text style={{fontSize: 14, marginRight: 6}}>Hello I am Jeffry Kayle and I’m new in Dispatch</Text>
-              <TouchableOpacity>
-                <Ionicons name='ellipsis-vertical' style={{fontSize: 20, marginRight: 5}}/>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.name}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-            </View>
-            <View style={style.message}>
-              <Text style={{fontSize: 14, marginRight: 6}}>Hello I am Jeffry Kayle and I’m new in Dispatch</Text>
-              <TouchableOpacity>
-                <Ionicons name='ellipsis-vertical' style={{fontSize: 20, marginRight: 5}}/>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={style.containerUserChat}>
-          <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
-          <View style={style.containerMesagge}>
-            <View style={style.name}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
-            </View>
-            <View style={style.message}>
-              <Text style={{fontSize: 14, marginRight: 6}}>Hello I am Jeffry Kayle and I’m new in Dispatch</Text>
-              <TouchableOpacity>
-                <Ionicons name='ellipsis-vertical' style={{fontSize: 20, marginRight: 5}}/>
-              </TouchableOpacity>
+              <Text style={{fontSize: 14, marginRight: 6}}>Hello I am Jeffry Kayle and I’m new in Chatgtp</Text>
+              <OptionsFriendsComponent/>
             </View>
           </View>
         </View>
@@ -204,22 +81,25 @@ const style = StyleSheet.create({
 
   containerUserChat: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: 15
+    marginVertical: 15,
+    marginHorizontal: 15
   },
 
   containerMesagge: {
+    flex: 1,
     justifyContent: 'center',
     marginLeft: 10
   },
 
-  name: {
+  nameAndDate: {
+    flexDirection: 'row',
     justifyContent: 'space-between',
     fontWeight: 'bold'
   },
 
   message: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 4
   }

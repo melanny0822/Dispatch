@@ -31,14 +31,23 @@ const TabNavigation = () => {
             name='HomeScreen'
             component={HomeScreen}
             options={{
-                tabBarIcon: ({focused}) => {
-                    return(
-                        <View style={style.containerOptions}>
-                            <Ionicons name='chatbubble-ellipses' color={focused ? '#FFFFFF': '#4DC683'} size={40}/>
-                            <Text style={style.text} color={focused ? '#FFFFFF': '#4DC683'}>CHAT</Text>
-                        </View>
-                    )
-                },
+                tabBarIcon: ({focused}) => (
+                    <View style={style.containerOptions}>
+                        <Ionicons name='chatbubble-ellipses' color={focused ? '#FFFFFF': '#4DC683'} size={40}/>
+                        <Text 
+                            style={
+                                {
+                                    color: focused ? '#FFFFFF': '#4DC683',
+                                    marginTop: 5,
+                                    fontSize: 12, 
+                                    fontFamily: 'sans-serif', 
+                                    fontWeight: 'bold', 
+                                }
+                            }>
+                            CHAT
+                        </Text>
+                    </View>
+                ),
                 headerShown: false,
                 tabBarInactiveTintColor: '#4DC683',
             }}
@@ -47,14 +56,23 @@ const TabNavigation = () => {
             name='FriendsScreen'
             component={FriendsScreen}
             options={{
-                tabBarIcon: ({color}) => {
-                    return(
+                tabBarIcon: ({focused}) => (
                         <View style={style.containerOptions}>
-                            <FontAwesome5 name='users' color={color} size={40}/>
-                            <Text style={style.text}>FRIENDS</Text>
+                            <FontAwesome5 name='users' color={focused ? '#FFFFFF': '#4DC683'} size={40}/>
+                            <Text 
+                            style={
+                                {
+                                    color: focused ? '#FFFFFF': '#4DC683',
+                                    marginTop: 5,
+                                    fontSize: 12, 
+                                    fontFamily: 'sans-serif', 
+                                    fontWeight: 'bold', 
+                                }
+                            }>
+                            FRIENDS
+                        </Text>
                         </View>
-                    )
-                },
+                ),
                 headerShown: false,
                 tabBarInactiveTintColor: '#4DC683',
             }}
@@ -63,14 +81,23 @@ const TabNavigation = () => {
             name='CallsScreen'
             component={CallsScreen}
             options={{
-                tabBarIcon: ({color}) => {
-                    return(
-                        <View style={style.containerOptions}>
-                            <FontAwesome6 name='phone' color={color} size={40}/>
-                            <Text style={style.text}>FRIENDS</Text>
-                        </View>
-                    )
-                },
+                tabBarIcon: ({focused}) => (
+                    <View style={style.containerOptions}>
+                        <FontAwesome6 name='phone' color={focused ? '#FFFFFF': '#4DC683'} size={40}/>
+                        <Text 
+                            style={
+                                {
+                                    color: focused ? '#FFFFFF': '#4DC683',
+                                    marginTop: 5,
+                                    fontSize: 12, 
+                                    fontFamily: 'sans-serif', 
+                                    fontWeight: 'bold', 
+                                }
+                            }>
+                            CALLS
+                        </Text>
+                    </View>
+                ),
                 headerShown: false,
                 tabBarInactiveTintColor: '#4DC683',
             }}
@@ -93,13 +120,6 @@ const style = StyleSheet.create ({
         justifyContent: 'center',
         textAlign: 'center'
     },
-
-    text: {
-        marginTop: 5,
-        fontSize: 12, 
-        fontFamily: 'sans-serif', 
-        fontWeight: 'bold', 
-    }
 })
 
 export default TabNavigation

@@ -1,8 +1,17 @@
 import React from 'react'
-import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
+import { 
+  SafeAreaView, 
+  ScrollView, 
+  StyleSheet, 
+  Text, 
+  TouchableOpacity, 
+  View, 
+  Image 
+} from 'react-native'
 
 //Icons Imports
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 //Images Imports
 import PhotoPerfil1 from '../assets/Persona1.jpg'
@@ -15,23 +24,26 @@ const CallsScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-      <View style={style.containerNavbar}>
-        <Text style={style.username}>Harold Sander</Text>
-        <View style={style.containerIcons}>
-          <SearchbarComponent/>
-          <Image source={PhotoPerfil1} style={style.PhotoPerfil}/>
+        <View style={style.containerNavbar}>
+          <Text style={style.username}>Harold Sander</Text>
+          <View style={style.containerIcons}>
+            <SearchbarComponent/>
+            <Image source={PhotoPerfil1} style={style.PhotoPerfil}/>
+          </View>
         </View>
-      </View>
-
-      <View style={style.containerUserChat}>
+    
+        <View style={style.containerUserChat}>
           <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
           <View style={style.containerMesagge}>
             <View style={style.name}>
-              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#00AB8C'}}>Jeffry Kayle</Text>
+              <Text style={{fontWeight: 'bold', fontSize: 16, color: '#C30000'}}>Jeffry Kayle</Text>
             </View>
             <View style={style.message}>
-              <Text style={{fontSize: 14, marginRight: 6}}>Lost Call</Text>
-              <Text style={{fontSize: 14, fontWeight: 'bold' , marginRight: 6}}>10:54 a.m</Text>
+              <View style={style.messageInfo}>
+                <MaterialCommunityIcons name='call-missed' style={{fontSize: 20, marginRight: 5, color: "#C30000"}}/>
+                <Text style={{fontSize: 14, marginRight: 6}}>Lost Call</Text>
+                <Text style={{fontSize: 14, fontWeight: 'bold' , marginRight: 6}}>10:54 a.m</Text>
+              </View>
               <TouchableOpacity>
                 <FontAwesome6 name='phone' style={{fontSize: 20, marginRight: 5}}/>
               </TouchableOpacity>
@@ -76,16 +88,18 @@ const style = StyleSheet.create({
 
   containerUserChat: {
     flexDirection: 'row',
-    marginHorizontal: 20,
-    marginVertical: 15
+    marginVertical: 15,
+    marginHorizontal: 15
   },
 
   containerMesagge: {
+    flex: 1,
     justifyContent: 'center',
     marginLeft: 10
   },
 
-  name: {
+  nameAndDate: {
+    flexDirection: 'row',
     justifyContent: 'space-between',
     fontWeight: 'bold'
   },
@@ -95,6 +109,10 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 4
+  },
+
+  messageInfo: {
+    flexDirection: 'row'
   }
 })
 
