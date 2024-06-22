@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
-import { Alert, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, Pressable, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {registerUser} from '../components/Authentications/AuthManager'
+import auth from '@react-native-firebase/auth'
+import {LoginManager, AccessToken} from 'react-native-fbsdk-next'
+import {GoogleSigninButton, GoogleSignin} from '@react-native-google-signin/google-signin'
 
 const RegisterScreen = ({navigation}) => {
+  const [userData, setUserData] = useState({})
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -35,6 +39,33 @@ const RegisterScreen = ({navigation}) => {
     setConfirmPassword('')
     navigation.navigate('HomeScreen')
   }
+  const handleGoogleLogin = async () => {
+    try {
+      await GoogleSignin.hasPlayServices()
+      const userInfo = await GoogleSignin.signIn()
+      Alert.alert('Inicio de sesion con Google exitoso')
+    } catch (error) {
+      Alert.alert('Error al iniciar sesion con Google', error.message)
+    }
+  }
+
+  const handleFacebookLogin = async () => {
+    try {
+      const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+      if (result.isCancelled) {
+        Alert.alert('Inicio de sesión con Facebook cancelado');
+      } else {
+        const data = await AccessToken.getCurrentAccessToken();
+        if (!data) {
+          Alert.alert('Error obteniendo el token de acceso de Facebook');
+          return;
+        }
+        Alert.alert('¡Registro con Facebook exitoso!');
+      }
+    } catch (error) {
+      Alert.alert('Error desconocido al iniciar sesión con Facebook');
+    }
+  };
 
   return (
     <LinearGradient colors={['#88FFA9', '#00AB8C']} style={styles.container}>
@@ -98,6 +129,14 @@ const RegisterScreen = ({navigation}) => {
             </LinearGradient>
           </TouchableOpacity>
 
+          <View style={styles.socialButtonsContainer}>
+            <TouchableOpacity style={styles.socialButton} onPress={handleFacebookLogin}>
+              <Image source={require('../assets/meta.png')}/>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.socialButton} onPress={handleGoogleLogin}>
+            <Image source={require('../assets/gmail.png')}/>
+            </TouchableOpacity>
+          </View>
         </View>
       </SafeAreaView>
     </LinearGradient>
@@ -177,6 +216,31 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  socialButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '60%',
+    marginTop: 20,
+  },
+  socialButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 50,
+    height: 50,
+    borderRadius: 10,
+    backgroundColor: '#F5F5F5',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  fcbk:{
+    backgroundColor: '#0768E1'
+  }
 
 })
 
