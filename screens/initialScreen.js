@@ -1,26 +1,20 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import React from 'react'
+import { SafeAreaView, Text, Touchable, TouchableOpacity, View } from 'react-native'
 
-const InitialScreen = () => {
+const InitialScreen = ({navigation}) => {
+
   return (
-    <View>
-      <Text>SCREEN INICIAL</Text>
-      <View style={styles.iconContainer}>
-        <AntDesign name='form' size={30} color="black" style={styles.icon} />
-      </View>
-    </View>
-  );
+    <SafeAreaView>
+        <View>
+            <Text>Initial Screen</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('TabNavigation')}
+            >
+              <Text>Cambiar</Text>
+            </TouchableOpacity>
+        </View>
+    </SafeAreaView>
+  )
 }
 
-const styles = StyleSheet.create({
-  icon: {
-    padding: 10,
-    borderRadius: 5,
-    width: 50,
-    height: 50,
-  },
- 
-});
-
-export default InitialScreen;
+export default InitialScreen
