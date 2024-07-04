@@ -67,17 +67,64 @@ const ChatComponent = () => {
             <LinearGradient colors={['#6AFF94','#00AB8C']} style={style.gradientContainer}>
                 <ScrollView>
                     <View style={style.messageContainer}>
-                        <Text style={style.messageChat}>Hi Jeffry, how's it going?</Text>
-                        <Text style={style.messageChatTwo}>Hey Harold! I'm good, </Text>
-                        <Text style={style.messageChat}> I'm doing well, thanks. Did you do anything fun over the weekend?</Text>
-                        <Text style={style.messageChatTwo}>Yeah, I went hiking with some friends. The weather was perfect. How about you?</Text>
-                        <Text style={style.messageChat}>That sounds great! I went to a new restaurant downtown. The food was amazing.</Text>
-                        <Text style={style.messageChatTwo}>Nice! I've been wanting to try that place. What did you have?</Text>
-                        <Text style={style.messageChat}>I had the seafood pasta. It was delicious. You should definitely go sometime.</Text>
-                        <Text style={style.messageChatTwo}>I'll add it to my list. By the way, are you free this Saturday? A group of us are going to the beach. </Text>
-                        <Text style={style.messageChat}>That sounds fun! I'd love to join. What time are you going?</Text>
-                        <Text style={style.messageChatTwo}>We're planning to leave around 9 AM. Does that work for you?</Text>
-                        <Text style={style.messageChat}>Perfect! I'll be ready. Thanks for inviting me.</Text>
+                        <View style={style.messageChat}>
+                            <Text style={{fontSize: 18,}}>Hi Jeffry, how's it going?</Text>
+                            <View style={style.hourAndCheck}>
+                                <Text style={style.hour}>10:00 a.m</Text>
+                            </View>
+                        </View>
+                        <View style={style.messageChatTwo}>
+                            <Text style={{fontSize: 18,}}>Hey Harold! I'm good, and you?</Text>
+                            <View style={style.hourAndCheck}>
+                                <Text style={style.hour}>10:00 a.m</Text>
+                                <Ionicons name='checkmark-done' style={{fontSize:20, color: '#007BEC'}}/>
+                            </View>
+                        </View>
+                        <View style={style.messageChat}>
+                            <Text style={{fontSize: 18,}}>I'm doing well, thanks. Did you do anything fun over the weekend?</Text>
+                            <View style={style.hourAndCheck}>
+                                <Text style={style.hour}>10:00 a.m</Text>
+                            </View>
+                        </View>
+                        <View style={style.messageChatTwo}>
+                            <Text style={{fontSize: 18,}}>Yeah, I went hiking with some friends. The weather was perfect. How about you?</Text>
+                            <View style={style.hourAndCheck}>
+                                <Text style={style.hour}>10:00 a.m</Text>
+                                <Ionicons name='checkmark-done' style={{fontSize:20, color: '#007BEC'}}/>
+                            </View>
+                        </View>
+                        <View style={style.messageChat}>
+                            <Text style={{fontSize: 18,}}>That sounds great! I went to a new restaurant downtown. The food was amazing.</Text>
+                            <View style={style.hourAndCheck}>
+                                <Text style={style.hour}>10:00 a.m</Text>
+                            </View>
+                        </View>
+                        <View style={style.messageChatTwo}>
+                            <Text style={{fontSize: 18,}}>Nice! I've been wanting to try that place. What did you have?</Text>
+                            <View style={style.hourAndCheck}>
+                                <Text style={style.hour}>10:00 a.m</Text>
+                                <Ionicons name='checkmark-done' style={{fontSize:20, color: '#007BEC'}}/>
+                            </View>
+                        </View>
+                        <View style={style.messageChat}>
+                            <Text style={{fontSize: 18,}}>I had the seafood pasta. It was delicious. You should definitely go sometime.</Text>
+                            <View style={style.hourAndCheck}>
+                                <Text style={style.hour}>10:00 a.m</Text>
+                            </View>
+                        </View>
+                        <View style={style.messageChatTwo}>
+                            <Text style={{fontSize: 18,}}>I'll add it to my list. By the way, are you free this Saturday? A group of us are going to the beach.</Text>
+                            <View style={style.hourAndCheck}>
+                                <Text style={style.hour}>10:00 a.m</Text>
+                                <Ionicons name='checkmark-done' style={{fontSize:20, color: '#007BEC'}}/>
+                        </View>
+                        </View>
+                            <View style={style.messageChat}>
+                            <Text style={{fontSize: 18,}}>That sounds fun! I'd love to join. What time are you going?</Text>
+                            <View style={style.hourAndCheck}>
+                                <Text style={style.hour}>10:00 a.m</Text>
+                            </View>
+                        </View>
                     </View>
                 </ScrollView>
                 <View style={style.chatContainer}>
@@ -167,7 +214,6 @@ const style = StyleSheet.create({
     },
 
     messageChat: {
-        fontSize: 18,
         backgroundColor: '#FFFFFF',
         paddingHorizontal: 10,
         paddingVertical: 15,
@@ -190,6 +236,16 @@ const style = StyleSheet.create({
         marginVertical: 10,
         textAlign: 'justify',
         alignSelf: 'flex-end'
+    },
+
+    hourAndCheck: {
+        flexDirection: 'row',
+        marginTop: 2,
+        alignSelf: 'flex-end'
+    },
+
+    hour: {
+        marginRight: 4
     },
 
     chatContainer: {

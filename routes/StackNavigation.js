@@ -9,7 +9,6 @@ import InitialScreen from '../screens/InitialScreen'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
 import TabNavigation from './TabNavigation'
-import HomeScreen from '../screens/HomeScreen'
 
 const Stack = createStackNavigator()
 
@@ -33,7 +32,6 @@ const StackNavigation = () => {
                     headerShown: false
                 }}
             >
-               
             </Stack.Screen>
             <Stack.Screen
                 name='RegisterScreen'
@@ -47,13 +45,6 @@ const StackNavigation = () => {
                 component={TabNavigation}
                 options={{
                     headerShown: false
-                }}
-            />
-            <Stack.Screen
-                name='HomeScreen'
-                component={HomeScreen}
-                options={{
-                    headerShown:false
                 }}
             />
         </Stack.Navigator>

@@ -43,7 +43,8 @@ const TabNavigation = () => {
                                     fontFamily: 'sans-serif', 
                                     fontWeight: 'bold', 
                                 }
-                            }>
+                            }
+                        >
                             CHAT
                         </Text>
                     </View>
@@ -68,7 +69,8 @@ const TabNavigation = () => {
                                     fontFamily: 'sans-serif', 
                                     fontWeight: 'bold', 
                                 }
-                            }>
+                            }
+                        >
                             FRIENDS
                         </Text>
                         </View>
@@ -93,7 +95,8 @@ const TabNavigation = () => {
                                     fontFamily: 'sans-serif', 
                                     fontWeight: 'bold', 
                                 }
-                            }>
+                            }
+                        >
                             CALLS
                         </Text>
                     </View>

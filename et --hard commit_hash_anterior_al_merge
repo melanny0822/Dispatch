@@ -1,0 +1,92 @@
+[33mcommit 445b9949b49633d9453321c853dbb5109212d4a3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mMelanny[m[33m, [m[1;31morigin/Melanny[m[33m)[m
+Author: MELANNY <101124668+melanny0822@users.noreply.github.com>
+Date:   Thu Jul 4 10:58:47 2024 -0500
+
+    feature: config firebase
+
+[33mcommit 5cfb1298c8e8c6d989eb7650179cc6fd1cfd5612[m
+Merge: 0c95c69 425d5d2
+Author: MELANNY <101124668+melanny0822@users.noreply.github.com>
+Date:   Sat Jun 22 10:48:36 2024 -0500
+
+    fix: Resolved merge conflicts
+
+[33mcommit 425d5d2d630ef45f2a708716051632173e482e3b[m
+Author: MELANNY <101124668+melanny0822@users.noreply.github.com>
+Date:   Sat Jun 22 10:41:47 2024 -0500
+
+    feature: Configuration of registerScreen with gmail and meta facebook
+
+[33mcommit 0c95c69cdd53f9191400b78b63d41718b7d84944[m
+Author: Andrés Berdugo <andres700crac@gmail.com>
+Date:   Fri Jun 7 18:24:09 2024 -0500
+
+    feture add new modals ChatComponent and OptionsFriendsCompoent, and modified files in folder sreens and modals
+
+[33mcommit 575a1c94cc3d0180a1ff3f2f4f21551d12165e37[m
+Author: MELANNY <101124668+melanny0822@users.noreply.github.com>
+Date:   Fri Jun 7 17:49:27 2024 -0500
+
+    removed package-lock.json and package.json from version control
+
+[33mcommit a4e94b94518cb415e9a7d8dfaeb436b9058d6810[m[33m ([m[1;31morigin/staging[m[33m, [m[1;32mstaging[m[33m)[m
+Merge: f838b7b f1844b5
+Author: Andrés Berdugo <andres700crac@gmail.com>
+Date:   Wed Jun 5 15:47:09 2024 -0500
+
+    Merge branch 'AndresBerdugo' of https://github.com/melanny0822/Dispatch into AndresBerdugo
+
+[33mcommit f1844b5c04ba85754eab964b4eb71116f2d39444[m
+Author: MELANNY <101124668+melanny0822@users.noreply.github.com>
+Date:   Mon May 20 18:37:40 2024 -0500
+
+    config dependencies
+
+[33mcommit f838b7b68dd0582d4fb21d84002ab9aef3ae184a[m
+Author: Andrés Berdugo <andres700crac@gmail.com>
+Date:   Wed Jun 5 15:23:32 2024 -0500
+
+    feat: created new folder modals AddFriendComponent SearchbarComponent and change screens and TabNavigation
+
+[33mcommit 6f121a06ef25c7c1b77e444e20e7516dc2db7ff3[m
+Merge: 0b25063 c921da9
+Author: Andrés Berdugo <andres700crac@gmail.com>
+Date:   Tue May 21 15:26:57 2024 -0500
+
+    modifed component StackNavigation and create new component called TabNavigation, and add new Sreens
+
+[33mcommit 0b25063bb793fa0aaaf4759b0f1867d722cef8d6[m
+Author: Andrés Berdugo <andres700crac@gmail.com>
+Date:   Tue May 21 15:22:11 2024 -0500
+
+    modifed component StackNavigation and create new component called TabNavigation, and add new Sreens
+
+[33mcommit c921da9cf2a78ffcec7f6d88483ade3ee1aa952c[m
+Author: MELANNY <101124668+melanny0822@users.noreply.github.com>
+Date:   Mon May 20 18:37:40 2024 -0500
+
+    config dependencies
+
+[33mcommit 55f2781a9bc159d76945d5ca3bf8150dad90c8c7[m
+Author: Andrés Berdugo <andres700crac@gmail.com>
+Date:   Mon May 20 18:37:09 2024 -0500
+
+    add folder Routes and file StackNavigation.js
+
+[33mcommit 17400d133af23ef514f42ee0722f8f15ba64303f[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Andrés Berdugo <andres700crac@gmail.com>
+Date:   Mon May 20 18:11:53 2024 -0500
+
+    change app ts to js
+
+[33mcommit 5100c551462020c194d78cb5490e7ad2e1804912[m
+Author: MELANNY <101124668+melanny0822@users.noreply.github.com>
+Date:   Sun May 19 19:47:56 2024 -0500
+
+    Creation of the react native project
+
+[33mcommit 11304c80fc6987faf0e5a9146000b9697c053dc7[m
+Author: MELANNY <101124668+melanny0822@users.noreply.github.com>
+Date:   Sun May 19 17:27:29 2024 -0500
+
+    Initial commit
