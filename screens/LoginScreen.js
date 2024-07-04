@@ -1,25 +1,46 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { SafeAreaView, Text, View, StyleSheet, Image, TextInput, TouchableOpacity, Alert} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import {validateUser} from '../components/Authentications/AuthManager'
+
+//conexion a firebase
+import { auth, db } from '../database/firebase';
+import {Formik} from 'formik'
+import * as Yup from 'yup'
 
 const LoginScreen = ({navigation}) => {
-  const [email, setEmail] =  useState('')
-  const [password, setPassword] = useState('')
+  const loginSchema = Yup.object().shape({
+    email: Yup.string()
+    .email('Invalid Email')
+    .required('Email is required to login'),
 
-  const handleLogin = () => {
-    if (email && password) {
-      if (validateUser(email, password)){
-        setEmail('')
-        setPassword('')
-        navigation.navigate('HomeScreen')
-        Alert.alert('¡Inicio de sesión exitoso!')
-      } else {
-        Alert.alert('Inicio de sesión fallido, verifique su usuario o contraseña')
+    password: Yup.string()
+    .min(8,'Password must be at least 8 characters long')
+    .required('Password is required to login')
+  })
+
+  const handleLogin = async (values, { setSubmitting }) => {
+    const { email, password } = values;
+
+    try {
+      // Verificar si el usuario está registrado en la base de datos
+      const userDoc = await db.collection('users').doc(email).get();
+      if (!userDoc.exists) {
+        Alert.alert('Login failed', 'User not registered in the database');
+        setSubmitting(false);
+        return;
       }
+
+      // Iniciar sesión con Firebase Authentication
+      await auth.signInWithEmailAndPassword(email, password);
+      Alert.alert('Successful login!');
+      navigation.navigate('TabNavigation');
+    } catch (error) {
+      Alert.alert('Login failed', error.message);
     }
-  }
+
+    setSubmitting(false);
+  };
 
 
   return (
@@ -32,32 +53,50 @@ const LoginScreen = ({navigation}) => {
 
         <View style={styles.formContainer}>
           <Text style={styles.welcomeText}>WELCOME BACK</Text>
-          <View style={styles.inputContainer}>
-            <Icon name='envelope' size={20} color='#888' style={styles.inputIcon}/>
-            <TextInput
-              style={styles.input}
-              placeholder='Email'
-              placeholderTextColor='#888'
-              value={email}
-              onChangeText={setEmail}
-            />
-          </View>
-          <View style={styles.inputContainer}>
-            <Icon name='lock' size={20} color='#888' style={styles.inputIcon}/> 
-            <TextInput
-              style={styles.input}
-              placeholder='Password'
-              placeholderTextColor='#888'
-              secureTextEntry
-              value={password}
-              onChangeText={setPassword}
-            />
-          </View>
-          <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <LinearGradient colors={['#88FFA9', '#00AB8C']} style={styles.buttonGradient}>
-             <Text style={styles.buttonText}>SIGN IN</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+          <Formik 
+            initialValues={{email: '', password: ''}}
+            validationSchema={loginSchema}
+            onSubmit={handleLogin}
+          >
+            {({handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting}) => (
+              <>
+                <View style={styles.inputContainer}>
+                  <Icon name='envelope' size={20} color='#888' style={styles.inputIcon}/>
+                  <TextInput
+                    style={styles.input}
+                    placeholder='Email'
+                    placeholderTextColor='#888'
+                    onChangeText={handleChange('email')}
+                    onBlur={handleBlur('email')}
+                    value={values.email}
+                    keyboardType='email-address'
+                    autoCapitalize='none'
+                  />
+                </View>
+                {errors.email && touched.email ? <Text style={styles.errorText}>{errors.email}</Text> : null}
+
+                <View style={styles.inputContainer}>
+                  <Icon name='lock' size={20} color='#888' style={styles.inputIcon}/> 
+                  <TextInput
+                    style={styles.input}
+                    placeholder='Password'
+                    placeholderTextColor='#888'
+                    onChangeText={handleChange('password')}
+                    onBlur={handleBlur('password')}
+                    value={values.password}
+                    secureTextEntry
+                  />
+                </View>
+                {errors.password && touched.password ? <Text style={styles.errorText}>{errors.password}</Text> : null}
+
+                <TouchableOpacity style={styles.button} onPress={handleSubmit} disabled={isSubmitting}>
+                  <LinearGradient colors={['#88FFA9', '#00AB8C']} style={styles.buttonGradient}>
+                  <Text style={styles.buttonText}>SIGN IN</Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              </>
+            )}
+          </Formik>
           <Text style={styles.forgotText}>Your Forgot Password?</Text>
           <TouchableOpacity onPress={() =>{}}>
             <Text style={styles.forgotLink}>Click here for recover your password</Text>
@@ -161,6 +200,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 12,
+    marginBottom: 10,
   },
 });
 
