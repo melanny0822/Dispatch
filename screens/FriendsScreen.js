@@ -30,7 +30,6 @@ const FriendsScreen = () => {
             <Image source={PhotoPerfil1} style={style.PhotoPerfil}/>
           </View>
         </View>
-    
         <View style={style.containerUserChat}>
           <Image source={PhotoPerfil2} style={style.PhotoPerfil} />
           <View style={style.containerMesagge}>

@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState, useRef} from 'react'
 import { 
     Modal, 
     SafeAreaView, 
@@ -17,12 +17,22 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 const OptionsFriendsComponent = () => {
 
     const [visible, setVisible] = useState(false)
+    const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 })
+    const buttonRef = useRef(null)
+
+    const handlePress = () => {
+        buttonRef.current.measure((fx, fy, width, height, px, py) => {
+          setButtonPosition({ x: px -130, y: py + height - 30});
+          setVisible(true);
+        })
+    }
 
     return (
         <SafeAreaView>
             <View>
                 <TouchableOpacity
-                    onPress={() => setVisible(true)}
+                    ref={buttonRef} 
+                    onPress={handlePress}
                 >
                     <Ionicons name='ellipsis-vertical' style={{fontSize: 20, marginRight: 5}}/>
                 </TouchableOpacity>
@@ -40,7 +50,7 @@ const OptionsFriendsComponent = () => {
                     onPress={() => setVisible(false)}
                 >
                     <View style={{flex: 1}}>
-                        <View style={style.container}>
+                        <View style={[style.container, { top: buttonPosition.y, left: buttonPosition.x }]}>
                             <TouchableOpacity style={style.info}>
                                 <FontAwesome name='trash' style={style.icons}/>
                                 <Text>Delete Friend</Text>
@@ -60,6 +70,7 @@ const OptionsFriendsComponent = () => {
 const style = StyleSheet.create({
 
     container: {
+        position: 'absolute',
         backgroundColor: '#FFFFFF',
         alignSelf: 'flex-end',
         paddingHorizontal: 20,
