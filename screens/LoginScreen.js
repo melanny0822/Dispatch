@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react'
 import { SafeAreaView, Text, View, StyleSheet, Image, TextInput, TouchableOpacity, Alert} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
@@ -8,29 +7,6 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import { auth, db } from '../database/firebase';
 import {Formik} from 'formik'
 import * as Yup from 'yup'
-=======
-import React, { useState } from 'react'
-import { 
-  SafeAreaView, 
-  Text, 
-  View, 
-  Image, 
-  TextInput, 
-  TouchableOpacity, 
-  Alert } 
-from 'react-native'
-
-//Dependencies Imports
-import LinearGradient from 'react-native-linear-gradient'
-import { validateUser } from '../components/Authentications/AuthManager'
-
-//Icons Imports
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
-
-//Styles Imports
-import StyleInitial from '../styles/StyleInitial'
->>>>>>> AndresBerdugo
 
 const LoginScreen = ({navigation}) => {
   const loginSchema = Yup.object().shape({
@@ -38,7 +14,6 @@ const LoginScreen = ({navigation}) => {
     .email('Invalid Email')
     .required('Email is required to login'),
 
-<<<<<<< HEAD
     password: Yup.string()
     .min(8,'Password must be at least 8 characters long')
     .required('Password is required to login')
@@ -54,17 +29,6 @@ const LoginScreen = ({navigation}) => {
         Alert.alert('Login failed', 'User not registered in the database');
         setSubmitting(false);
         return;
-=======
-  const handleLogin = () => {
-    if (email && password) {
-      if (validateUser(email, password)){
-        setEmail('')
-        setPassword('')
-        navigation.navigate('TabNavigation')
-        Alert.alert('¡Inicio de sesión exitoso!')
-      } else {
-        Alert.alert('Inicio de sesión fallido, verifique su usuario o contraseña')
->>>>>>> AndresBerdugo
       }
 
       // Iniciar sesión con Firebase Authentication
@@ -78,19 +42,15 @@ const LoginScreen = ({navigation}) => {
     setSubmitting(false);
   };
 
+
   return (
-    <LinearGradient colors={['#88FFA9', '#00AB8C']} style={StyleInitial.container}>
-      <FontAwesome5 
-        onPress={() => navigation.navigate('InitialScreen')}
-        name='arrow-circle-left' style={StyleInitial.buttonBack}
-      />
-      <SafeAreaView style={StyleInitial.containerInner}>
-        <View style={StyleInitial.containerLogo}>
-          <Image source={require('../assets/Huge-icon.png')} style={StyleInitial.logoHuge}/>
-          <Text style={StyleInitial.textLogo}>LOGIN</Text>
+    <LinearGradient colors={['#88FFA9', '#00AB8C']} style={styles.container}> 
+      <SafeAreaView style={styles.innerContainer}>
+        <View style={styles.logo}>
+          <Image source={require('../assets/Huge-icon.png')} style={styles.logo}/>
+          <Text style={styles.logoText}>LOGIN</Text>
         </View>
 
-<<<<<<< HEAD
         <View style={styles.formContainer}>
           <Text style={styles.welcomeText}>WELCOME BACK</Text>
           <Formik 
@@ -138,63 +98,16 @@ const LoginScreen = ({navigation}) => {
             )}
           </Formik>
           <Text style={styles.forgotText}>Your Forgot Password?</Text>
-=======
-        <View style={StyleInitial.containerForm}>
-          <Text style={StyleInitial.titleLoginRegister}>WELCOME BACK</Text>
-          <View style={StyleInitial.containerInputLoginRegister}>
-            <FontAwesome 
-              name='envelope' 
-              style={StyleInitial.iconInputLoginRegister}
-            />
-            <TextInput
-              style={StyleInitial.textInputLoginRegister}
-              placeholder='Email'
-              placeholderTextColor='#9F9F9F'
-              value={email}
-              onChangeText={setEmail}
-            />
-          </View>
-          <View style={StyleInitial.containerInputLoginRegister}>
-            <FontAwesome 
-              name='lock' 
-              style={StyleInitial.iconInputLoginRegister}
-            /> 
-            <TextInput
-              style={StyleInitial.textInputLoginRegister}
-              placeholder='Password'
-              placeholderTextColor='#9F9F9F'
-              secureTextEntry
-              value={password}
-              onChangeText={setPassword}
-            />
-          </View>
-
-          <TouchableOpacity 
-            style={StyleInitial.buttonLoginRegister} 
-            onPress={handleLogin}
-          >
-            <LinearGradient 
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-              colors={['#88FFA9', '#00AB8C']} 
-              style={StyleInitial.gradientButtonLoginRegister}
-            >
-              <Text style={StyleInitial.textButtonLoginRegister}>SIGN IN</Text>
-            </LinearGradient>
-          </TouchableOpacity>
-
-          <Text style={StyleInitial.textForgot}>Your Forgot Password?</Text>
->>>>>>> AndresBerdugo
           <TouchableOpacity onPress={() =>{}}>
-            <Text style={StyleInitial.textForgotLink}>Click here for recover your password</Text>
+            <Text style={styles.forgotLink}>Click here for recover your password</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
     </LinearGradient>
+    
   )
 }
 
-<<<<<<< HEAD
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -296,6 +209,3 @@ const styles = StyleSheet.create({
 });
 
 export default LoginScreen
-=======
-export default LoginScreen
->>>>>>> AndresBerdugo

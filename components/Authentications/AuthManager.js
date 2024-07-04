@@ -11,4 +11,4 @@ const validateUser = (email, password) => {
     return user !== undefined
 }
 
-export { registerUser, validateUser }
+export {registerUser, validateUser }

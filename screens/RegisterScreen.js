@@ -1,149 +1,164 @@
 import React, { useState } from 'react'
-import { Alert, Image, Pressable, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import {registerUser} from '../components/Authentications/AuthManager'
-import auth from '@react-native-firebase/auth'
-import {LoginManager, AccessToken} from 'react-native-fbsdk-next'
-import {GoogleSigninButton, GoogleSignin} from '@react-native-google-signin/google-signin'
+import {useNavigation} from '@react-navigation/native'
 
-const RegisterScreen = ({navigation}) => {
-  const [userData, setUserData] = useState({})
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+//Firebase
+import firebase from '../database/firebase'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
 
-  const handleSignUp = () => {
-    if (!username || !email || !password || !confirmPassword) {
-      Alert.alert('Error', 'Please fill in all fields')
-      return
-    }
 
-    if(password !== confirmPassword) {
-      Alert.alert('Error', 'Password do not match')
-      return
-    }
+const RegisterScreen = () => {
+  const navigation = useNavigation()
 
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/
-    if (!password.match(passwordRegex)){
-      Alert.alert('Error', 'The password must be at least 8 characters long')
-      return
-    }
+  const [state, setState] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  })
 
-    registerUser(username, email, password)
-    Alert.alert('¡Usuario registrado con éxito!')
-    setUsername('')
-    setEmail('')
-    setPassword('')
-    setConfirmPassword('')
-    navigation.navigate('HomeScreen')
-  }
-  const handleGoogleLogin = async () => {
-    try {
-      await GoogleSignin.hasPlayServices()
-      const userInfo = await GoogleSignin.signIn()
-      Alert.alert('Inicio de sesion con Google exitoso')
-    } catch (error) {
-      Alert.alert('Error al iniciar sesion con Google', error.message)
-    }
+  const handleChangeText = (name, value) => {
+    setState({
+      ...state,
+      [name]: value,
+    })
   }
 
-  const handleFacebookLogin = async () => {
-    try {
-      const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
-      if (result.isCancelled) {
-        Alert.alert('Inicio de sesión con Facebook cancelado');
-      } else {
-        const data = await AccessToken.getCurrentAccessToken();
-        if (!data) {
-          Alert.alert('Error obteniendo el token de acceso de Facebook');
-          return;
-        }
-        Alert.alert('¡Registro con Facebook exitoso!');
+  const createNewUser = async() => {
+    if (state.username === '') {
+      Alert.alert('Por favor, proporciona un nombre de usuario')
+    } else {
+      try {
+        await firebase.db.collection('users').add({
+          username: state.username,
+          email: state.email,
+          password: state.password,
+          confirmPassword: state.confirmPassword,
+        })
+        Alert.alert('Usuario registrado con éxito')
+        navigation.navigate('TabNavigation')
+      } catch (error) {
+        console.error('Error al crear nuevo usuario:', error)
+        Alert.alert('Error registrando usuario', error.message)
       }
-    } catch (error) {
-      Alert.alert('Error desconocido al iniciar sesión con Facebook');
     }
-  };
+  }
+
+  const validationSchema = Yup.object().shape({
+    username: Yup.string()
+      .required('Username is required'),
+    email: Yup.string()
+     .email('Invalid Email')
+     .required('Email is required'),
+    password: Yup.string()
+      .min(8, 'Password must be at least 8 characters long')
+      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/, 'Password must contain uppercase, lowercase, number and special character')
+      .required('Password is required'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), null], 'Password must match')
+      .required('Confirm Password is required')
+  })
+
 
   return (
-    <LinearGradient colors={['#88FFA9', '#00AB8C']} style={StyleInitial.container}>
-      <FontAwesome5 
-        onPress={() => navigation.navigate('InitialScreen')}
-        name='arrow-circle-left' style={StyleInitial.buttonBack}
-      />
-      <SafeAreaView style={StyleInitial.containerInner}>
-        <View style={StyleInitial.containerLogo}>
-          <Image source={require('../assets/Huge-icon.png')} style={StyleInitial.logo}/>
-          <Text style={StyleInitial.textLogo}>REGISTER</Text>
+    <LinearGradient colors={['#88FFA9', '#00AB8C']} style={styles.container}>
+      <SafeAreaView style={styles.innerContainer}>
+        <View style={styles.logoContainer}>
+          <Image source={require('../assets/Huge-icon.png')} style={styles.logo}/>
+          <Text style={styles.logoText}>USERS REGISTER</Text>
         </View>
 
         <View style={styles.formContainer}>
           <Text style={styles.welcomeText}>CHAT NOW!</Text>
-          <View style={styles.inputContainer}>
-            <Icon name='user' size={20} color='#888' style={styles.inputIcon}/>
-            <TextInput
-              style={styles.input}
-              placeholder='Username'
-              placeholderTextColor='#888'
-              value={username}
-              onChangeText={setUsername}
-            />
-          </View> 
 
-          <View style={styles.inputContainer}>
-            <Icon name='envelope' size={20} color='#888' style={styles.inputIcon}/>
-            <TextInput
-              style={styles.input}
-              placeholder='Email'
-              placeholderTextColor='#888'
-              value={email}
-              onChangeText={setEmail}
-            />
-          </View>
+          <Formik
+            initialValues={{ username: '', email: '', password: '', confirmPassword: '' }}
+            validationSchema={validationSchema}
+            onSubmit={createNewUser}
+          >
+            {({ handleChange, handleBlur, handleSubmit, values, errors, touched}) => (
+              <>
+                <View style={styles.inputContainer}>
+                  <Icon name='user' size={20} color='#888' style={styles.inputIcon}/>
+                  <TextInput
+                    style={styles.input}
+                    placeholder='Username'
+                    placeholderTextColor='#888'
+                    onChangeText={(value) => {
+                      handleChangeText('username', value)
+                      handleChange('username')(value)
+                    }}
+                    onBlur={handleBlur('username')}
+                    value={values.username}
+                  />
+                </View> 
+                {errors.username && touched.username ? <Text style={styles.errorText}>{errors.username}</Text> : null}
 
-          <View style={styles.inputContainer}>
-            <Icon name='lock' size={20} color='#888' style={styles.inputIcon}/>
-            <TextInput
-              style={styles.input}
-              placeholder='Password'
-              placeholderTextColor='#888'
-              secureTextEntry
-              value={password}
-              onChangeText={setPassword}
-            />
-          </View>
+                <View style={styles.inputContainer}>
+                  <Icon name='envelope' size={20} color='#888' style={styles.inputIcon}/>
+                  <TextInput
+                    style={styles.input}
+                    placeholder='Email'
+                    placeholderTextColor='#888'
+                    onChangeText={(value) => {
+                      handleChangeText('email', value)
+                      handleChange('email')(value)
+                    }}
+                    onBlur={handleBlur('email')}
+                    value={values.email}
+                  />
+                </View>
+                {errors.email && touched.email ? <Text style={styles.errorText}>{errors.email}</Text> : null}
 
-          <View style={styles.inputContainer}>
-            <Icon name='lock' size={20} color='#888' style={styles.inputIcon}/>
-            <TextInput
-              style={styles.input}
-              placeholder='Confirm Password'
-              placeholderTextColor='#888'
-              secureTextEntry
-              value={confirmPassword}
-              onChangeText={setConfirmPassword}
-            />
-          </View>
+                <View style={styles.inputContainer}>
+                  <Icon name='lock' size={20} color='#888' style={styles.inputIcon}/>
+                  <TextInput
+                    style={styles.input}
+                    placeholder='Password'
+                    placeholderTextColor='#888'
+                    secureTextEntry
+                    onChangeText={(value) => {
+                      handleChangeText('password', value)
+                      handleChange('password')(value)
+                    }}
+                    onBlur={handleBlur('password')}
+                    value={values.password}
+                  />
+                </View>
+                {errors.password && touched.password ? <Text style={styles.errorText}>{errors.password}</Text> : null}
 
-          <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-            <LinearGradient colors={['#88FFA9', '#00AB8C']} style={styles.buttonGradient}>
-              <Text style={styles.buttonText}>SIGN UP</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+                <View style={styles.inputContainer}>
+                  <Icon name='lock' size={20} color='#888' style={styles.inputIcon}/>
+                  <TextInput
+                    style={styles.input}
+                    placeholder='Confirm Password'
+                    placeholderTextColor='#888'
+                    secureTextEntry
+                    onChangeText={(value) => {
+                      handleChangeText('confirmPassword', value)
+                      handleChange('confirmPassword')(value)
+                    }}
+                    onBlur={handleBlur('confirmPassword')}
+                    value={values.confirmPassword}
+                  />
+                </View>
+                {errors.confirmPassword && touched.confirmPassword ? <Text style={styles.errorText}>{errors.confirmPassword}</Text> : null}
 
-          <View style={styles.socialButtonsContainer}>
-            <TouchableOpacity style={styles.socialButton} onPress={handleFacebookLogin}>
-              <Image source={require('../assets/meta.png')}/>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.socialButton} onPress={handleGoogleLogin}>
-            <Image source={require('../assets/gmail.png')}/>
-            </TouchableOpacity>
-          </View>
+                <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                  <LinearGradient colors={['#88FFA9', '#00AB8C']} style={styles.buttonGradient}>
+                    <Text style={styles.buttonText}>SIGN UP</Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              </>
+            )}  
+          </Formik>
         </View>
       </SafeAreaView>
     </LinearGradient>
+    
   )
 }
 
@@ -158,8 +173,7 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 20,
-    
+    marginBottom: 20, 
   },
   logo: {
     width: 100,
@@ -243,7 +257,12 @@ const styles = StyleSheet.create({
   },
   fcbk:{
     backgroundColor: '#0768E1'
-  }
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 12,
+    marginBottom: 10,
+  },
 
 })
 
