@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "722628957535",
+    "project_id": "dispatch-bda36",
+    "storage_bucket": "dispatch-bda36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722628957535:android:7bd7332417dde0961cd2ea",
+        "android_client_info": {
+          "package_name": "com.dispatch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAogjPmGvcs60B2kwft0xesulACpfWBLK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
